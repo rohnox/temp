@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Rebecca · وضعیت اشتراک</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    :root {
+      --rb-primary: #4f7cff;
+      --rb-primary-deep: #3b5fd9;
+      --rb-accent: #22c59e;
+      --rb-bg: #f4f7fc;
+      --rb-card: #ffffff;
+      --rb-card2: #eef2f9;
+      --rb-text: #0f172a;
+      --rb-muted: #64748b;
+      --rb-border: #e2e8f0;
+      --rb-danger: #ef4444;
+      --rb-warn: #f59e0b;
+      --rb-shadow: 0 6px 24px rgba(15,23,42,.08);
+      --rb-radius: 18px;
+    }
+    html[data-theme="dark"] {
+      --rb-bg: #0b1220;
+      --rb-card: #121c30;
+      --rb-card2: #182742;
+      --rb-text: #e7edf7;
+      --rb-muted: #8ea0bd;
+      --rb-border: #233252;
+      --rb-shadow: 0 8px 28px rgba(0,0,0,.45);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Vazirmatn, Tahoma, "Segoe UI", system-ui, sans-serif;
+      background: var(--rb-bg);
+      color: var(--rb-text);
+      min-height: 100vh;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 20px 16px 72px; }
+    .header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 4px 24px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; }
+    .brand svg { width: 34px; height: 34px; }
+    .iconbtn {
+      cursor: pointer; border: 1px solid var(--rb-border); background: var(--rb-card);
+      color: var(--rb-text); border-radius: 12px; padding: 8px 12px; font-size: 14px;
+    }
+    .hero {
+      background: linear-gradient(135deg, var(--rb-primary), var(--rb-primary-deep));
+      border-radius: var(--rb-radius); padding: 26px 22px; color: #fff; box-shadow: var(--rb-shadow);
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: ""; position: absolute; left: -60px; top: -60px; width: 220px; height: 220px;
+      border-radius: 50%; background: rgba(255,255,255,.12);
+    }
+    .hero h1 { font-size: 22px; font-weight: 800; }
+    .hero .sub { opacity: .9; font-size: 14px; margin-top: 4px; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 4px 14px;
+      font-size: 13px; font-weight: 700;
+    }
+    .pill.ok { background: rgba(34,197,158,.18); color: #059669; }
+    html[data-theme="dark"] .pill.ok { color: #34d399; }
+    .pill.bad { background: rgba(239,68,68,.2); color: #ef4444; }
+    .pill.warn { background: rgba(245,158,11,.2); color: #f59e0b; }
+    .card {
+      background: var(--rb-card); border: 1px solid var(--rb-border); border-radius: var(--rb-radius);
+      box-shadow: var(--rb-shadow); padding: 20px; margin-top: 18px;
+    }
+    .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    .stat { background: var(--rb-card2); border-radius: 14px; padding: 14px; }
+    .stat .k { font-size: 12px; color: var(--rb-muted); }
+    .stat .v { font-size: 17px; font-weight: 800; margin-top: 4px; word-break: break-all; }
+    .section-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 10px; }
+    .section-title h2 { font-size: 17px; font-weight: 800; }
+    .artifact {
+      border: 1px solid var(--rb-border); border-radius: 14px; padding: 14px;
+      margin-top: 14px; background: var(--rb-card2);
+    }
+    .artifact-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px; }
+    .artifact .lbl { font-size: 13.5px; font-weight: 700; }
+    .chip {
+      font-size: 11px; font-weight: 700; border: 1px solid var(--rb-border); color: var(--rb-muted);
+      border-radius: 999px; padding: 2px 10px; text-transform: uppercase; direction: ltr;
+    }
+    .linkbox {
+      direction: ltr; text-align: left; word-break: break-all; background: var(--rb-card);
+      border: 1px dashed var(--rb-border); border-radius: 10px; padding: 10px;
+      font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; max-height: 100px; overflow-y: auto;
+    }
+    .row { display: flex; gap: 8px; align-items: center; justify-content: space-between; margin-top: 10px; flex-wrap: wrap; }
+    .btn {
+      cursor: pointer; border: none; border-radius: 10px; padding: 9px 16px; font-weight: 700;
+      font-size: 13px; font-family: inherit; background: var(--rb-primary); color: #fff; transition: background .2s;
+    }
+    .btn:hover { background: var(--rb-primary-deep); }
+    .btn.ghost { background: transparent; color: var(--rb-primary); border: 1px solid var(--rb-primary); }
+    .qrbox { text-align: center; padding: 14px; background: #fff; border-radius: 14px; margin-top: 10px; display: inline-block; }
+    .footer { text-align: center; color: var(--rb-muted); font-size: 12px; margin-top: 36px; }
+    details > summary { cursor: pointer; list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <!-- Header -->
+  <div class="header">
+    <div class="brand">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="2" y="2" width="44" height="44" rx="12" fill="#4f7cff"/>
+        <path d="M14 14 H26 C30 14 33 17 33 21 C33 24 31 27 27 27 L34 34 H28 L22 28 H19 V34 H14 Z M19 19 V23 H25 C27 23 28 22 28 21 C28 20 27 19 25 19 Z" fill="#ffffff"/>
+      </svg>
+      <span>Rebecca</span>
+    </div>
+    <button class="iconbtn" onclick="rbTheme()" title="تغییر تم">◐</button>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>ربکا · وضعیت اشتراک</h1>
+    <div class="sub">کاربر: <b>{{ user.username }}</b></div>
+  </div>
+
+  <!-- User Statistics -->
+  <div class="card">
+    <div class="grid">
+      <div class="stat">
+        <div class="k">وضعیت اکانت</div>
+        <div class="v">
+          {% if user.status == "active" %}
+            <span class="pill ok">فعال</span>
+          {% elif user.status == "limited" %}
+            <span class="pill warn">محدود شده</span>
+          {% elif user.status == "expired" %}
+            <span class="pill bad">منقضی شده</span>
+          {% else %}
+            <span class="pill">{{ user.status }}</span>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="k">حجم مصرف شده</div>
+        <div class="v" dir="ltr">
+          {% if user.used_traffic %}
+            {{ user.used_traffic }}
+          {% else %}
+            0 B
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="k">حجم کل</div>
+        <div class="v" dir="ltr">
+          {% if user.data_limit %}
+            {{ user.data_limit }}
+          {% else %}
+            نامحدود
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="k">تاریخ انقضا</div>
+        <div class="v" dir="ltr">
+          {% if user.expire %}
+            {{ user.expire }}
+          {% else %}
+            بدون تاریخ انقضا
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services & Protocols Section -->
+  <div class="card">
+    <div class="section-title">
+      <h2>کانفیگ‌های سرویس</h2>
+      <button class="btn ghost" onclick="rbCopy(this, window.location.href)">کپی لینک اشتراک</button>
+    </div>
+
+    <!-- رندر تمام کانفیگ‌ها و پروتکل‌ها -->
+    {% for link in links %}
+    <div class="artifact" data-config-item>
+      <div class="artifact-header">
+        <div class="lbl">⚡ کانفیگ شماره {{ forloop.Counter }}</div>
+        <span class="chip proto-badge">CONFIG</span>
+      </div>
+      <div class="linkbox" id="cfg-target-{{ forloop.Counter }}">{{ link }}</div>
+      <div class="row">
+        <div>
+          <details>
+            <summary><button class="btn ghost" type="button" onclick="renderQr('cfg-target-{{ forloop.Counter }}', 'qr-target-{{ forloop.Counter }}')">نمایش QR</button></summary>
+            <div class="qrbox" id="qr-target-{{ forloop.Counter }}"></div>
+          </details>
+        </div>
+        <button class="btn" data-done="کپی شد ✓" onclick="rbCopy(this, document.getElementById('cfg-target-{{ forloop.Counter }}').innerText.trim())">کپی کانفیگ</button>
+      </div>
+    </div>
+    {% empty %}
+    <p style="color: var(--rb-muted); padding: 12px 0;">هیچ کانفیگی برای این سرویس فعال نیست.</p>
+    {% endfor %}
+  </div>
+
+  <div class="footer">Powered by <b>Rebecca Panel</b></div>
+</div>
+
+<script>
+  function rbCopy(btn, text) {
+    var orig = btn.textContent;
+    var done = function() {
+      btn.textContent = btn.dataset.done || 'کپی شد ✓';
+      setTimeout(function() {
+        btn.textContent = orig;
+      }, 1400);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(function() {
+        rbFallbackCopy(text, done);
+      });
+    } else {
+      rbFallbackCopy(text, done);
+    }
+  }
+
+  function rbFallbackCopy(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+    } catch(e) {}
+    document.body.removeChild(ta);
+    done();
+  }
+
+  function renderQr(sourceId, targetId) {
+    var target = document.getElementById(targetId);
+    if (!target || target.childNodes.length > 0) return;
+    var text = document.getElementById(sourceId).innerText.trim();
+    new QRCode(target, {
+      text: text,
+      width: 210,
+      height: 210,
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  }
+
+  // شناسایی هوشمند نوع پروتکل از روی لینک برای نمایش برچسب اختصاصی
+  (function detectProtocols() {
+    var items = document.querySelectorAll('[data-config-item]');
+    for (var i = 0; i < items.length; i++) {
+      var box = items[i].querySelector('.linkbox');
+      var badge = items[i].querySelector('.proto-badge');
+      if (box && badge) {
+        var uri = box.innerText.trim().toLowerCase();
+        if (uri.indexOf('vless://') === 0) { badge.textContent = 'VLESS'; }
+        else if (uri.indexOf('vmess://') === 0) { badge.textContent = 'VMESS'; }
+        else if (uri.indexOf('trojan://') === 0) { badge.textContent = 'TROJAN'; }
+        else if (uri.indexOf('ss://') === 0) { badge.textContent = 'SHADOWSOCKS'; }
+        else if (uri.indexOf('tuic://') === 0) { badge.textContent = 'TUIC'; }
+        else if (uri.indexOf('hysteria2://') === 0 || uri.indexOf('hy2://') === 0) { badge.textContent = 'HYSTERIA 2'; }
+        else if (uri.indexOf('wireguard://') === 0) { badge.textContent = 'WIREGUARD'; }
+        else { badge.textContent = 'PROXY'; }
+      }
+    }
+  })();
+
+  function rbTheme() {
+    var cur = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = cur;
+    try {
+      localStorage.setItem('rb-theme', cur);
+    } catch(e) {}
+  }
+
+  (function initTheme() {
+    try {
+      var s = localStorage.getItem('rb-theme');
+      var prefer = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = s || prefer;
+    } catch(e) {
+      document.documentElement.dataset.theme = 'light';
+    }
+  })();
+</script>
+</body>
+</html>
