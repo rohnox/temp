@@ -8,7 +8,7 @@
 </div>
 
 ```bash
-sudo wget -N -P /var/lib/rebecca/templates/subscription/ https://raw.githubusercontent.com/rohnox/Pro-Subscription-Template/refs/heads/main/index.html
+sudo wget -N -P /var/lib/rebecca/templates/subscription/ https://raw.githubusercontent.com/rohnox/temp/refs/heads/main/nox.html
 ```
 
 <div>
