@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <title>Rebecca · اشتراک {{ user.username }}</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     :root {
       --rb-primary: #4f7cff;
@@ -90,11 +89,16 @@
       border-radius: 999px; padding: 2px 10px; text-transform: uppercase; direction: ltr;
     }
     .chip.wg-file { background: rgba(79, 124, 255, 0.2); color: var(--rb-primary); border-color: var(--rb-primary); }
+    .chip.l2tp-badge { background: rgba(245, 158, 11, 0.2); color: var(--rb-warn); border-color: var(--rb-warn); }
     .linkbox {
       direction: ltr; text-align: left; word-break: break-all; background: var(--rb-card);
       border: 1px dashed var(--rb-border); border-radius: 10px; padding: 10px;
       font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; max-height: 100px; overflow-y: auto;
     }
+    .table-details { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+    .table-details td { padding: 8px; border-bottom: 1px solid var(--rb-border); }
+    .table-details td.tk { color: var(--rb-muted); width: 35%; }
+    .table-details td.tv { direction: ltr; text-align: left; font-family: monospace; font-weight: bold; }
     .row { display: flex; gap: 8px; align-items: center; justify-content: space-between; margin-top: 10px; flex-wrap: wrap; }
     .btn {
       cursor: pointer; border: none; border-radius: 10px; padding: 9px 16px; font-weight: 700;
@@ -105,7 +109,8 @@
     .btn.ghost { background: transparent; color: var(--rb-primary); border: 1px solid var(--rb-primary); }
     .btn.dl-btn { background: #10b981; }
     .btn.dl-btn:hover { background: #059669; }
-    .qrbox { text-align: center; padding: 14px; background: #fff; border-radius: 14px; margin-top: 10px; display: inline-block; }
+    .qrbox { text-align: center; padding: 14px; background: #fff; border-radius: 14px; margin-top: 10px; display: inline-block; min-width: 200px; min-height: 200px; }
+    .qrbox img { width: 200px; height: 200px; display: block; margin: 0 auto; }
     .footer { text-align: center; color: var(--rb-muted); font-size: 12px; margin-top: 36px; }
     details > summary { cursor: pointer; list-style: none; }
     details > summary::-webkit-details-marker { display: none; }
@@ -125,13 +130,13 @@
     <button class="iconbtn" onclick="rbTheme()" title="تغییر تم">◐</button>
   </div>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <div class="hero">
     <h1>ربکا · وضعیت اشتراک</h1>
     <div class="sub">کاربر: <b>{{ user.username }}</b></div>
   </div>
 
-  <!-- User Statistics -->
+  <!-- Status Cards -->
   <div class="card">
     <div class="grid">
       <div class="stat">
@@ -155,13 +160,13 @@
       </div>
 
       <div class="stat">
-        <div class="k">حجم کل / باقی‌مانده</div>
+        <div class="k">حجم باقی‌مانده / کل</div>
         <div class="v" dir="ltr" id="stat-total">نامحدود ∞</div>
       </div>
 
       <div class="stat">
-        <div class="k">تاریخ انقضا</div>
-        <div class="v" id="stat-expire">بدون انقضا</div>
+        <div class="k">اعتبار تا تاریخ</div>
+        <div class="v" id="stat-expire">نامحدود (بدون انقضا)</div>
       </div>
     </div>
     
@@ -170,7 +175,39 @@
     </div>
   </div>
 
-  <!-- Services & Protocols Section -->
+  <!-- L2TP / Remote Access Box (نمایش اطلاعات اتصال L2TP و Cisco) -->
+  <div class="card" id="l2tp-container">
+    <div class="section-title">
+      <h2>اتصال مستقیم L2TP / IPsec & Cisco</h2>
+      <span class="chip l2tp-badge">REMOTE ACCESS</span>
+    </div>
+    <div class="artifact">
+      <table class="table-details">
+        <tr>
+          <td class="tk">آدرس سرور:</td>
+          <td class="tv" id="l2tp-server">-</td>
+          <td><button class="btn ghost" style="padding:4px 8px;font-size:11px;" onclick="rbCopy(this, document.getElementById('l2tp-server').innerText)">کپی</button></td>
+        </tr>
+        <tr>
+          <td class="tk">نام کاربری:</td>
+          <td class="tv">{{ user.username }}</td>
+          <td><button class="btn ghost" style="padding:4px 8px;font-size:11px;" onclick="rbCopy(this, '{{ user.username }}')">کپی</button></td>
+        </tr>
+        <tr>
+          <td class="tk">رمز عبور:</td>
+          <td class="tv" id="l2tp-pass">{% if user.password %}{{ user.password }}{% else %}{{ user.username }}{% endif %}</td>
+          <td><button class="btn ghost" style="padding:4px 8px;font-size:11px;" onclick="rbCopy(this, document.getElementById('l2tp-pass').innerText)">کپی</button></td>
+        </tr>
+        <tr>
+          <td class="tk">کلید اشتراکی (PSK / Secret):</td>
+          <td class="tv" id="l2tp-secret">{% if psk %}{{ psk }}{% else %}12345678{% endif %}</td>
+          <td><button class="btn ghost" style="padding:4px 8px;font-size:11px;" onclick="rbCopy(this, document.getElementById('l2tp-secret').innerText)">کپی</button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Configs List -->
   <div class="card">
     <div class="section-title">
       <h2>کانفیگ‌های سرویس</h2>
@@ -189,8 +226,10 @@
       <div class="row">
         <div class="action-left">
           <details>
-            <summary><button class="btn ghost" type="button" onclick="renderQr('cfg-target-{{ forloop.Counter }}', 'qr-target-{{ forloop.Counter }}')">نمایش QR</button></summary>
-            <div class="qrbox" id="qr-target-{{ forloop.Counter }}"></div>
+            <summary><button class="btn ghost" type="button" onclick="loadQr('cfg-target-{{ forloop.Counter }}', 'qr-target-{{ forloop.Counter }}')">نمایش QR</button></summary>
+            <div class="qrbox" id="qr-target-{{ forloop.Counter }}">
+              <div style="color:var(--rb-muted);font-size:12px;padding:10px;">در حال ساخت کد...</div>
+            </div>
           </details>
         </div>
         <div class="action-right">
@@ -207,10 +246,12 @@
 </div>
 
 <script>
-  // مقادیر خامی که سرور ربکا چاپ می‌کند
   var rawUsed = "{{ user.used_traffic }}";
   var rawLimit = "{{ user.data_limit }}";
   var rawExpire = "{{ user.expire }}";
+
+  // آدرس سرور فعلی برای L2TP
+  document.getElementById("l2tp-server").textContent = window.location.hostname;
 
   function formatBytes(bytes) {
     var b = parseInt(bytes, 10);
@@ -222,16 +263,14 @@
 
   function formatExpire(ts) {
     var sec = parseInt(ts, 10);
-    if (!sec || isNaN(sec) || sec === 0) return "بدون انقضا (نامحدود)";
-    
-    // اگر میلی‌ثانیه نبود تبدیل به ms کن
+    if (!sec || isNaN(sec) || sec <= 0) {
+      return "نامحدود (بدون انقضا)";
+    }
     if (sec < 10000000000) sec = sec * 1000;
     
     var expDate = new Date(sec);
     var now = new Date();
     var diffDays = Math.ceil((expDate - now) / (1000 * 60 * 60 * 24));
-    
-    // تبدیل به تاریخ خورشیدی ساده و خوانا
     var pDate = new Intl.DateTimeFormat('fa-IR', { year: 'numeric', month: 'short', day: 'numeric' }).format(expDate);
     
     if (diffDays > 0) {
@@ -241,7 +280,6 @@
     }
   }
 
-  // اصلاح مقادیر و نوار پیشرفت حجم
   (function initStats() {
     var usedEl = document.getElementById("stat-used");
     var totalEl = document.getElementById("stat-total");
@@ -259,7 +297,7 @@
       bar.style.background = "var(--rb-accent)";
     } else {
       var remNum = Math.max(0, limitNum - usedNum);
-      totalEl.textContent = formatBytes(limitNum) + " (" + formatBytes(remNum) + " مانده)";
+      totalEl.textContent = formatBytes(remNum) + " مانده از " + formatBytes(limitNum);
       
       var pct = Math.min(100, Math.round((usedNum / limitNum) * 100));
       bar.style.width = pct + "%";
@@ -271,29 +309,28 @@
     expireEl.textContent = formatExpire(rawExpire);
   })();
 
-  // شناسایی هوشمند پروتکل‌ها و تبدیل کانفیگ وایرگارد .conf به دکمه مستقیم دانلود
-  (function setupProtocolsAndActions() {
+  // پردازش پروتکل‌ها و تغییر ظاهر فایل وایرگارد
+  (function setupProtocols() {
     var items = document.querySelectorAll("[data-config-item]");
     for (var i = 0; i < items.length; i++) {
       var box = items[i].querySelector(".linkbox");
       var badge = items[i].querySelector(".proto-badge");
       var actRight = items[i].querySelector(".action-right");
+      var actLeft = items[i].querySelector(".action-left");
       var lbl = items[i].querySelector(".lbl");
 
       if (!box) continue;
       var uri = box.innerText.trim();
       var low = uri.toLowerCase();
 
-      // چک کردن آیا لینک فایل دانلودی WireGuard (.conf) است؟
+      // فایل دانلودی Wireguard
       if (low.indexOf(".conf") !== -1 || (low.indexOf("/wg/") !== -1 && low.indexOf("http") === 0)) {
         badge.textContent = "WIREGUARD FILE";
         badge.className = "chip wg-file";
         lbl.textContent = "📥 فایل تنظیمات وایرگارد (.conf)";
-
-        // جایگزینی دکمه کپی با دکمه دانلود مستقیم
+        if (actLeft) actLeft.style.display = "none";
         actRight.innerHTML = '<a href="' + uri + '" download class="btn dl-btn">دانلود مستقیم فایل کانفیگ ⬇</a>';
-      }
-      else if (low.indexOf("wireguard://") === 0) {
+      } else if (low.indexOf("wireguard://") === 0) {
         badge.textContent = "WIREGUARD";
       } else if (low.indexOf("vless://") === 0) {
         badge.textContent = "VLESS";
@@ -308,10 +345,20 @@
       } else if (low.indexOf("hysteria2://") === 0 || low.indexOf("hy2://") === 0) {
         badge.textContent = "HYSTERIA 2";
       } else {
-        badge.textContent = "PROXY";
+        badge.textContent = "CONFIG";
       }
     }
   })();
+
+  // ساخت QR Code مستقیم بدون وابستگی به CDNهای فیلترشده خارجی
+  function loadQr(sourceId, targetId) {
+    var target = document.getElementById(targetId);
+    if (!target || target.getAttribute("data-loaded") === "1") return;
+    var text = document.getElementById(sourceId).innerText.trim();
+    var qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" + encodeURIComponent(text);
+    target.innerHTML = '<img src="' + qrUrl + '" alt="QR Code" style="width:200px;height:200px;margin:0 auto;display:block;" />';
+    target.setAttribute("data-loaded", "1");
+  }
 
   function rbCopy(btn, text) {
     var orig = btn.textContent;
@@ -336,18 +383,6 @@
     try { document.execCommand("copy"); } catch(e) {}
     document.body.removeChild(ta);
     done();
-  }
-
-  function renderQr(sourceId, targetId) {
-    var target = document.getElementById(targetId);
-    if (!target || target.childNodes.length > 0) return;
-    var text = document.getElementById(sourceId).innerText.trim();
-    new QRCode(target, {
-      text: text,
-      width: 210,
-      height: 210,
-      correctLevel: QRCode.CorrectLevel.M
-    });
   }
 
   function rbTheme() {
