@@ -4,37 +4,37 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <title>Rebecca · وضعیت اشتراک {{ user.username }}</title>
+  <title>Rebecca · اشتراک {{ user.username }}</title>
   <style>
     :root {
-      --rb-primary: #4f7cff;
-      --rb-primary-deep: #3b5fd9;
-      --rb-accent: #22c59e;
-      --rb-bg: #f4f7fc;
-      --rb-card: #ffffff;
-      --rb-card2: #eef2f9;
-      --rb-text: #0f172a;
-      --rb-muted: #64748b;
-      --rb-border: #e2e8f0;
-      --rb-danger: #ef4444;
-      --rb-warn: #f59e0b;
-      --rb-shadow: 0 6px 24px rgba(15,23,42,.08);
-      --rb-radius: 18px;
+      --zg-primary: #4f7cff;
+      --zg-primary-deep: #3b5fd9;
+      --zg-accent: #22c59e;
+      --zg-bg: #f4f7fc;
+      --zg-card: #ffffff;
+      --zg-card2: #eef2f9;
+      --zg-text: #0f172a;
+      --zg-muted: #64748b;
+      --zg-border: #e2e8f0;
+      --zg-danger: #ef4444;
+      --zg-warn: #f59e0b;
+      --zg-shadow: 0 6px 24px rgba(15,23,42,.08);
+      --zg-radius: 18px;
     }
     html[data-theme="dark"] {
-      --rb-bg: #0b1220;
-      --rb-card: #121c30;
-      --rb-card2: #182742;
-      --rb-text: #e7edf7;
-      --rb-muted: #8ea0bd;
-      --rb-border: #233252;
-      --rb-shadow: 0 8px 28px rgba(0,0,0,.45);
+      --zg-bg: #0b1220;
+      --zg-card: #121c30;
+      --zg-card2: #182742;
+      --zg-text: #e7edf7;
+      --zg-muted: #8ea0bd;
+      --zg-border: #233252;
+      --zg-shadow: 0 8px 28px rgba(0,0,0,.45);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: Vazirmatn, Tahoma, -apple-system, system-ui, sans-serif;
-      background: var(--rb-bg);
-      color: var(--rb-text);
+      background: var(--zg-bg);
+      color: var(--zg-text);
       min-height: 100vh;
       line-height: 1.7;
       transition: background .25s, color .25s;
@@ -43,12 +43,12 @@
     .header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 4px 20px; }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; }
     .iconbtn {
-      cursor: pointer; border: 1px solid var(--rb-border); background: var(--rb-card);
-      color: var(--rb-text); border-radius: 12px; padding: 8px 14px; font-size: 14px;
+      cursor: pointer; border: 1px solid var(--zg-border); background: var(--zg-card);
+      color: var(--zg-text); border-radius: 12px; padding: 8px 14px; font-size: 14px;
     }
     .hero {
-      background: linear-gradient(135deg, var(--rb-primary), var(--rb-primary-deep));
-      border-radius: var(--rb-radius); padding: 26px 22px; color: #fff; box-shadow: var(--rb-shadow);
+      background: linear-gradient(135deg, var(--zg-primary), var(--zg-primary-deep));
+      border-radius: var(--zg-radius); padding: 26px 22px; color: #fff; box-shadow: var(--zg-shadow);
       position: relative; overflow: hidden;
     }
     .hero::after {
@@ -66,58 +66,58 @@
     .pill.bad { background: rgba(239,68,68,.2); color: #ef4444; }
     .pill.warn { background: rgba(245,158,11,.2); color: #f59e0b; }
     .card {
-      background: var(--rb-card); border: 1px solid var(--rb-border); border-radius: var(--rb-radius);
-      box-shadow: var(--rb-shadow); padding: 20px; margin-top: 18px;
+      background: var(--zg-card); border: 1px solid var(--zg-border); border-radius: var(--zg-radius);
+      box-shadow: var(--zg-shadow); padding: 20px; margin-top: 18px;
     }
     .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
-    .stat { background: var(--rb-card2); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; }
-    .stat .k { font-size: 12px; color: var(--rb-muted); }
-    .stat .v { font-size: 16px; font-weight: 800; margin-top: 6px; white-space: normal; word-break: break-word; }
-    .bar { height: 8px; background: var(--rb-card2); border-radius: 999px; overflow: hidden; margin-top: 16px; border: 1px solid var(--rb-border); }
-    .bar > div { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--rb-accent), var(--rb-primary)); width: 0%; transition: width .6s ease; }
+    .stat { background: var(--zg-card2); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; }
+    .stat .k { font-size: 12px; color: var(--zg-muted); }
+    .stat .v { font-size: 15px; font-weight: 800; margin-top: 6px; word-break: break-word; }
+    .bar { height: 8px; background: var(--zg-card2); border-radius: 999px; overflow: hidden; margin-top: 16px; border: 1px solid var(--zg-border); }
+    .bar > div { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--zg-accent), var(--zg-primary)); width: 0%; transition: width .6s ease; }
     .section-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 10px; }
     .section-title h2 { font-size: 17px; font-weight: 800; }
     .artifact {
-      border: 1px solid var(--rb-border); border-radius: 14px; padding: 14px;
-      margin-top: 14px; background: var(--rb-card2);
+      border: 1px solid var(--zg-border); border-radius: 14px; padding: 14px;
+      margin-top: 14px; background: var(--zg-card2);
     }
     .artifact-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px; }
     .artifact .lbl { font-size: 13.5px; font-weight: 700; }
     .chip {
-      font-size: 11px; font-weight: 700; border: 1px solid var(--rb-border); color: var(--rb-muted);
+      font-size: 11px; font-weight: 700; border: 1px solid var(--zg-border); color: var(--zg-muted);
       border-radius: 999px; padding: 2px 10px; text-transform: uppercase; direction: ltr;
     }
-    .chip.wg-file { background: rgba(79, 124, 255, 0.2); color: var(--rb-primary); border-color: var(--rb-primary); }
-    .chip.l2tp-badge { background: rgba(245, 158, 11, 0.2); color: var(--rb-warn); border-color: var(--rb-warn); }
+    .chip.wg-file { background: rgba(79, 124, 255, 0.2); color: var(--zg-primary); border-color: var(--zg-primary); }
+    .chip.l2tp-badge { background: rgba(245, 158, 11, 0.2); color: var(--zg-warn); border-color: var(--zg-warn); }
     .linkbox {
-      direction: ltr; text-align: left; word-break: break-all; background: var(--rb-card);
-      border: 1px dashed var(--rb-border); border-radius: 10px; padding: 10px;
+      direction: ltr; text-align: left; word-break: break-all; background: var(--zg-card);
+      border: 1px dashed var(--zg-border); border-radius: 10px; padding: 10px;
       font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; max-height: 100px; overflow-y: auto;
     }
     .table-details { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
-    .table-details td { padding: 9px 6px; border-bottom: 1px solid var(--rb-border); }
-    .table-details td.tk { color: var(--rb-muted); width: 32%; }
+    .table-details td { padding: 9px 6px; border-bottom: 1px solid var(--zg-border); }
+    .table-details td.tk { color: var(--zg-muted); width: 35%; }
     .table-details td.tv { direction: ltr; text-align: left; font-family: monospace; font-weight: bold; }
     .row { display: flex; gap: 8px; align-items: center; justify-content: space-between; margin-top: 10px; flex-wrap: wrap; }
     .btn {
       cursor: pointer; border: none; border-radius: 10px; padding: 9px 16px; font-weight: 700;
-      font-size: 13px; font-family: inherit; background: var(--rb-primary); color: #fff; text-decoration: none;
+      font-size: 13px; font-family: inherit; background: var(--zg-primary); color: #fff; text-decoration: none;
       display: inline-flex; align-items: center; gap: 6px; transition: background .2s;
     }
-    .btn:hover { background: var(--rb-primary-deep); }
-    .btn.ghost { background: transparent; color: var(--rb-primary); border: 1px solid var(--rb-primary); }
+    .btn:hover { background: var(--zg-primary-deep); }
+    .btn.ghost { background: transparent; color: var(--zg-primary); border: 1px solid var(--zg-primary); }
     .btn.dl-btn { background: #10b981; }
     .btn.dl-btn:hover { background: #059669; }
     .qrbox { text-align: center; padding: 14px; background: #fff; border-radius: 14px; margin-top: 10px; display: inline-block; }
-    .qrbox canvas, .qrbox svg { width: 200px !important; height: 200px !important; display: block; margin: 0 auto; }
-    .footer { text-align: center; color: var(--rb-muted); font-size: 12px; margin-top: 36px; }
+    .qrbox svg { width: 200px !important; height: 200px !important; display: block; margin: 0 auto; }
+    .footer { text-align: center; color: var(--zg-muted); font-size: 12px; margin-top: 36px; }
     details > summary { cursor: pointer; list-style: none; }
     details > summary::-webkit-details-marker { display: none; }
   </style>
 </head>
 <body>
 <div class="wrap">
-  <!-- Header -->
+  <!-- هدر -->
   <div class="header">
     <div class="brand">
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:34px;height:34px;">
@@ -126,16 +126,16 @@
       </svg>
       <span>Rebecca</span>
     </div>
-    <button class="iconbtn" onclick="rbTheme()" title="تغییر تم">◐</button>
+    <button class="iconbtn" onclick="zgTheme()" title="تغییر تم">◐</button>
   </div>
 
-  <!-- Hero Section -->
+  <!-- کارت اصلی اطلاعات اشتراک -->
   <div class="hero">
     <h1>ربکا · وضعیت اشتراک</h1>
     <div class="sub">کاربر: <b>{{ user.username }}</b></div>
   </div>
 
-  <!-- User Statistics -->
+  <!-- آمار ترافیک و تاریخ انقضا -->
   <div class="card">
     <div class="grid">
       <div class="stat">
@@ -174,8 +174,8 @@
     </div>
   </div>
 
-  <!-- L2TP Box (تنها در صورتی نمایش داده می‌شود که در اینباندهای کاربر وجود داشته باشد) -->
-  <div class="card" id="l2tp-container" style="display: none;">
+  <!-- باکس اتصال L2TP / Cisco (به صورت خودکار توسط API /info ربکا پر می‌شود) -->
+  <div class="card" id="l2tp-card" style="display:none;">
     <div class="section-title">
       <h2>مشخصات اتصال L2TP / IPsec</h2>
       <span class="chip l2tp-badge">L2TP / IPSEC</span>
@@ -185,32 +185,32 @@
         <tr>
           <td class="tk">آدرس سرور:</td>
           <td class="tv" id="l2tp-server">-</td>
-          <td><button class="btn ghost" style="padding:4px 8px;font-size:11px;" onclick="rbCopy(this, document.getElementById('l2tp-server').innerText)">کپی</button></td>
+          <td><button class="btn ghost" style="padding:4px 8px;font-size:11px;" onclick="zgCopy(this, document.getElementById('l2tp-server').innerText)">کپی</button></td>
         </tr>
         <tr>
           <td class="tk">نام کاربری:</td>
           <td class="tv">{{ user.username }}</td>
-          <td><button class="btn ghost" style="padding:4px 8px;font-size:11px;" onclick="rbCopy(this, '{{ user.username }}')">کپی</button></td>
+          <td><button class="btn ghost" style="padding:4px 8px;font-size:11px;" onclick="zgCopy(this, '{{ user.username }}')">کپی</button></td>
         </tr>
         <tr>
           <td class="tk">رمز عبور:</td>
-          <td class="tv" id="l2tp-pass">{% if user.password %}{{ user.password }}{% else %}{{ user.username }}{% endif %}</td>
-          <td><button class="btn ghost" style="padding:4px 8px;font-size:11px;" onclick="rbCopy(this, document.getElementById('l2tp-pass').innerText)">کپی</button></td>
+          <td class="tv" id="l2tp-password">{{ user.username }}</td>
+          <td><button class="btn ghost" style="padding:4px 8px;font-size:11px;" onclick="zgCopy(this, document.getElementById('l2tp-password').innerText)">کپی</button></td>
         </tr>
-        <tr id="l2tp-secret-row" style="display:none;">
-          <td class="tk">کلید پیش‌فرض (Secret/PSK):</td>
-          <td class="tv" id="l2tp-secret">-</td>
-          <td><button class="btn ghost" style="padding:4px 8px;font-size:11px;" onclick="rbCopy(this, document.getElementById('l2tp-secret').innerText)">کپی</button></td>
+        <tr id="l2tp-psk-row" style="display:none;">
+          <td class="tk">کلید اشتراکی (PSK):</td>
+          <td class="tv" id="l2tp-psk">-</td>
+          <td><button class="btn ghost" style="padding:4px 8px;font-size:11px;" onclick="zgCopy(this, document.getElementById('l2tp-psk').innerText)">کپی</button></td>
         </tr>
       </table>
     </div>
   </div>
 
-  <!-- Configs List -->
+  <!-- لیست کانفیگ‌ها و پروتکل‌ها -->
   <div class="card">
     <div class="section-title">
       <h2>کانفیگ‌های سرویس</h2>
-      <button class="btn ghost" onclick="rbCopy(this, window.location.href)">کپی لینک اشتراک</button>
+      <button class="btn ghost" onclick="zgCopy(this, window.location.href)">کپی لینک اشتراک</button>
     </div>
 
     {% for link in links %}
@@ -224,53 +224,49 @@
       
       <div class="row">
         <div class="action-left">
-          <details>
-            <summary><button class="btn ghost" type="button" onclick="generateQrLocal('cfg-target-{{ forloop.Counter }}', 'qr-target-{{ forloop.Counter }}')">نمایش QR</button></summary>
+          <details ontoggle="makeQr(this, 'cfg-target-{{ forloop.Counter }}', 'qr-target-{{ forloop.Counter }}')">
+            <summary><button class="btn ghost" type="button">نمایش QR</button></summary>
             <div class="qrbox" id="qr-target-{{ forloop.Counter }}"></div>
           </details>
         </div>
         <div class="action-right">
-          <button class="btn copy-btn" data-done="کپی شد ✓" onclick="rbCopy(this, document.getElementById('cfg-target-{{ forloop.Counter }}').innerText.trim())">کپی کانفیگ</button>
+          <button class="btn copy-btn" data-done="کپی شد ✓" onclick="zgCopy(this, document.getElementById('cfg-target-{{ forloop.Counter }}').innerText.trim())">کپی کانفیگ</button>
         </div>
       </div>
     </div>
     {% empty %}
-    <p style="color: var(--rb-muted); padding: 12px 0;">هیچ کانفیگی برای این سرویس فعال نیست.</p>
+    <p style="color: var(--zg-muted); padding: 12px 0;">هیچ کانفیگی برای این سرویس فعال نیست.</p>
     {% endfor %}
   </div>
 
   <div class="footer">Powered by <b>Rebecca Panel</b></div>
 </div>
 
-<!-- اسکریپت مینیاتوری تولید آفلاین و تضمینی QR Code (کاملاً لوکال بدون نیاز به اینترنت) -->
+<!-- اسکریپت سبک آفلاین برای رسم بدون باگ QR Code -->
 <script>
-/*! qrcode generator - MIT license */
-var qrcode=(function(){var a={};function b(e,d){this.typeNumber=e;this.errorCorrectLevel=d;this.modules=null;this.moduleCount=0;this.dataCache=null;this.dataList=[]}b.prototype={addData:function(d){var e=new c(d);this.dataList.push(e);this.dataCache=null},isDark:function(d,e){if(d<0||this.moduleCount<=d||e<0||this.moduleCount<=e){throw new Error(d+","+e)}return this.modules[d][e]},getModuleCount:function(){return this.moduleCount},make:function(){this.makeImpl(false,this.getBestMaskPattern())},makeImpl:function(h,d){this.moduleCount=this.typeNumber*4+17;this.modules=new Array(this.moduleCount);for(var g=0;g<this.moduleCount;g++){this.modules[g]=new Array(this.moduleCount);for(var f=0;f<this.moduleCount;f++){this.modules[g][f]=null}}this.setupPositionProbePattern(0,0);this.setupPositionProbePattern(this.moduleCount-7,0);this.setupPositionProbePattern(0,this.moduleCount-7);this.setupPositionAdjustPattern();this.setupTimingPattern();this.setupTypeInfo(h,d);if(this.typeNumber>=7){this.setupTypeNumber(h)}if(this.dataCache==null){this.dataCache=b.createData(this.typeNumber,this.errorCorrectLevel,this.dataList)}this.mapData(this.dataCache,d)},setupPositionProbePattern:function(d,f){for(var e=-1;e<=7;e++){if(d+e<=-1||this.moduleCount<=d+e){continue}for(var g=-1;g<=7;g++){if(f+g<=-1||this.moduleCount<=f+g){continue}if((0<=e&&e<=6&&(g==0||g==6))||(0<=g&&g<=6&&(e==0||e==6))||(2<=e&&e<=4&&2<=g&&g<=4)){this.modules[d+e][f+g]=true}else{this.modules[d+e][f+g]=false}}}},getBestMaskPattern:function(){var e=0;var d=0;for(var f=0;f<8;f++){this.makeImpl(true,f);var g=a.getLostPoint(this);if(f==0||e>g){e=g;d=f}}return d},setupTimingPattern:function(){for(var d=8;d<this.moduleCount-8;d++){if(this.modules[d][6]!=null){continue}this.modules[d][6]=(d%2==0)}for(var e=8;e<this.moduleCount-8;e++){if(this.modules[6][e]!=null){continue}this.modules[6][e]=(e%2==0)}},setupPositionAdjustPattern:function(){var e=a.getPatternPosition(this.typeNumber);for(var d=0;d<e.length;d++){for(var g=0;g<e.length;g++){var f=e[d];var h=e[g];if(this.modules[f][h]!=null){continue}for(var j=-2;j<=2;j++){for(var k=-2;k<=2;k++){if(j==-2||j==2||k==-2||k==2||(j==0&&k==0)){this.modules[f+j][h+k]=true}else{this.modules[f+j][h+k]=false}}}}}},setupTypeInfo:function(g,h){var f=(1<<3)|h;var j=a.getBCHTypeInfo(f);for(var e=0;e<15;e++){var d=(!g&&((j>>e)&1)==1);if(e<6){this.modules[e][8]=d}else{if(e<8){this.modules[e+1][8]=d}else{this.modules[this.moduleCount-15+e][8]=d}}if(e<8){this.modules[8][this.moduleCount-e-1]=d}else{if(e<9){this.modules[8][15-e-1+1]=d}else{this.modules[8][15-e-1]=d}}}this.modules[this.moduleCount-8][8]=(!g)},setupTypeNumber:function(g){var f=a.getBCHTypeNumber(this.typeNumber);for(var e=0;e<18;e++){var d=(!g&&((f>>e)&1)==1);this.modules[Math.floor(e/3)][e%3+this.moduleCount-8-3]=d;this.modules[e%3+this.moduleCount-8-3][Math.floor(e/3)]=d}},mapData:function(j,f){var k=-1;var g=this.moduleCount-1;var e=7;var h=0;for(var d=this.moduleCount-1;d>0;d-=2){if(d==6){d--}while(true){for(var l=0;l<2;l++){if(this.modules[g][d-l]==null){var m=false;if(h<j.length){m=(((j[h]>>>e)&1)==1)}var n=a.getMask(f,g,d-l);if(n){m=!m}this.modules[g][d-l]=m;e--;if(e==-1){h++;e=7}}}g+=k;if(g<0||this.moduleCount<=g){g-=k;k=-k;break}}}}};function c(d){this.mode=4;this.data=d}c.prototype={getLength:function(){return this.data.length},write:function(e){for(var d=0;d<this.data.length;d++){e.put(this.data.charCodeAt(d),8)}}};a={PATTERN_POSITION_TABLE:[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],G15:(1<<10)|(1<<8)|(1<<5)|(1<<4)|(1<<2)|(1<<1)|(1<<0),G18:(1<<12)|(1<<11)|(1<<10)|(1<<9)|(1<<8)|(1<<5)|(1<<2)|(1<<0),G15_MASK:(1<<14)|(1<<12)|(1<<10)|(1<<4)|(1<<1),getBCHTypeInfo:function(e){var d=e<<10;while(a.getBCHDigit(d)-a.getBCHDigit(a.G15)>=0){d^=(a.G15<<(a.getBCHDigit(d)-a.getBCHDigit(a.G15)))}return((e<<10)|d)^a.G15_MASK},getBCHTypeNumber:function(e){var d=e<<12;while(a.getBCHDigit(d)-a.getBCHDigit(a.G18)>=0){d^=(a.G18<<(a.getBCHDigit(d)-a.getBCHDigit(a.G18)))}return(e<<12)|d},getBCHDigit:function(d){var e=0;while(d!=0){e++;d>>>=1}return e},getPatternPosition:function(d){return a.PATTERN_POSITION_TABLE[d-1]},getMask:function(e,f,d){switch(e){case 0:return(f+d)%2==0;case 1:return f%2==0;case 2:return d%3==0;case 3:return(f+d)%3==0;case 4:return(Math.floor(f/2)+Math.floor(d/3))%2==0;case 5:return(f*d)%2+(f*d)%3==0;case 6:return((f*d)%2+(f*d)%3)%2==0;case 7:return((f*d)%3+(f+d)%2)%2==0;default:throw new Error("bad mask:"+e)}},getErrorCorrectPolynomial:function(e){var f=new d([1],0);for(var g=0;g<e;g++){f=f.multiply(new d([1,a.gexp(g)],0))}return f},getLengthInBits:function(d,e){if(1<=e&&e<10){switch(d){case 4:return 8;default:return 8}}else{return 16}},getLostPoint:function(e){var g=e.getModuleCount();var f=0;for(var h=0;h<g;h++){for(var j=0;j<g;j++){var k=0;var l=e.isDark(h,j);for(var m=-1;m<=1;m++){if(h+m<0||g<=h+m){continue}for(var n=-1;n<=1;n++){if(j+n<0||g<=j+n){continue}if(m==0&&n==0){continue}if(l==e.isDark(h+m,j+n)){k++}}}if(k>5){f+=(3+k-5)}}}return f}};function d(e,d){if(e.length==undefined){throw new Error(e.length+"/"+d)}var f=0;while(f<e.length&&e[f]==0){f++}this.num=new Array(e.length-f+d);for(var g=0;g<e.length-f;g++){this.num[g]=e[g+f]}}d.prototype={get:function(d){return this.num[d]},getLength:function(){return this.num.length},multiply:function(f){var e=new Array(this.getLength()+f.getLength()-1);for(var g=0;g<this.getLength();g++){for(var h=0;h<f.getLength();h++){e[g+h]^=a.gmult(this.get(g),f.get(h))}}return new d(e,0)},mod:function(f){if(this.getLength()-f.getLength()<0){return this}var g=a.glog(this.get(0))-a.glog(f.get(0));var e=new Array(this.getLength());for(var h=0;h<this.getLength();h++){e[h]=this.get(h)}for(var h=0;h<f.getLength();h++){e[h]^=a.gmult(f.get(h),a.gexp(g))}return new d(e,0).mod(f)}};b.createData=function(m,e,h){var k=a.getRSBlocks(m,e);var l=new f();for(var g=0;g<h.length;g++){var n=h[g];l.put(n.mode,4);l.put(n.getLength(),a.getLengthInBits(n.mode,m));n.write(l)}var j=0;for(var g=0;g<k.length;g++){j+=k[g].dataCount}if(l.getLengthInBits()>j*8){throw new Error("Code length overflow. ("+l.getLengthInBits()+">"+j*8+")")}if(l.getLengthInBits()+4<=j*8){l.put(0,4)}while(l.getLengthInBits()%8!=0){l.putBit(false)}while(true){if(l.getLengthInBits()>=j*8){break}l.put(236,8);if(l.getLengthInBits()>=j*8){break}l.put(17,8)}return b.createBytes(l,k)};b.createBytes=function(h,d){var m=0;var l=0;var k=0;var n=new Array(d.length);var e=new Array(d.length);for(var g=0;g<d.length;g++){var o=d[g].dataCount;var j=d[g].totalCount-o;l=Math.max(l,o);k=Math.max(k,j);n[g]=new Array(o);for(var f=0;f<n[g].length;f++){n[g][f]=255&h.buffer[f+m]}m+=o;var p=a.getErrorCorrectPolynomial(j);var q=new d(n[g],p.getLength()-1);var r=q.mod(p);e[g]=new Array(p.getLength()-1);for(var f=0;f<e[g].length;f++){var s=f+r.getLength()-e[g].length;e[g][f]=(s>=0)?r.get(s):0}}var t=0;for(var f=0;f<d.length;f++){t+=d[f].totalCount}var u=new Array(t);var v=0;for(var f=0;f<l;f++){for(var g=0;g<d.length;g++){if(f<n[g].length){u[v++]=n[g][f]}}}for(var f=0;f<k;f++){for(var g=0;g<d.length;g++){if(f<e[g].length){u[v++]=e[g][f]}}}return u};function f(){this.buffer=new Array();this.length=0}f.prototype={get:function(d){var e=Math.floor(d/8);return((this.buffer[e]>>>(7-d%8))&1)==1},put:function(d,f){for(var e=0;e<f;e++){this.putBit(((d>>>(f-e-1))&1)==1)}},getLengthInBits:function(){return this.length},putBit:function(d){var e=Math.floor(this.length/8);if(this.buffer.length<=e){this.buffer.push(0)}if(d){this.buffer[e]|=(128>>>(this.length%8))}this.length++}};a.RS_BLOCK_TABLE=[[1,26,19],[1,44,34],[1,70,55],[1,100,80],[1,134,108],[2,86,68],[2,98,78],[2,121,97],[2,146,116],[2,86,68,2,87,69],[4,101,81],[2,116,92,2,117,93],[2,107,85,2,108,86],[4,115,91],[2,87,69,4,88,70],[4,121,97],[2,93,75,4,94,76],[4,107,85,2,108,86],[4,113,89,4,114,90],[4,107,85,6,108,86]];a.getRSBlocks=function(d,h){var g=a.RS_BLOCK_TABLE[(d-1)*1+0]||[1,26,19];var e=new Array();for(var f=0;f<g.length;f+=3){var j=g[f];var k=g[f+1];var l=g[f+2];for(var m=0;m<j;m++){e.push({totalCount:k,dataCount:l})}}return e};a.EXP_TABLE=new Array(256);a.LOG_TABLE=new Array(256);for(var i=0;i<8;i++){a.EXP_TABLE[i]=1<<i}for(var i=8;i<256;i++){a.EXP_TABLE[i]=a.EXP_TABLE[i-4]^a.EXP_TABLE[i-5]^a.EXP_TABLE[i-6]^a.EXP_TABLE[i-8]}for(var i=0;i<255;i++){a.LOG_TABLE[a.EXP_TABLE[i]]=i}a.gexp=function(d){while(d<0){d+=255}while(d>=256){d-=255}return a.EXP_TABLE[d]};a.glog=function(d){if(d<1){throw new Error("glog("+d+")")}return a.LOG_TABLE[d]};a.gmult=function(d,e){if(d==0||e==0){return 0}return a.gexp(a.glog(d)+a.glog(e))};return function(d,e){for(var f=1;f<=10;f++){try{var g=new b(f,e||0);g.addData(d);g.make();return g}catch(h){}}return null};})();
+var QRCodeObj=(function(){function b(e,d){this.typeNumber=e;this.errorCorrectLevel=d;this.modules=null;this.moduleCount=0;this.dataCache=null;this.dataList=[]}b.prototype={addData:function(d){this.dataList.push(new c(d));this.dataCache=null},isDark:function(d,e){return this.modules[d][e]},getModuleCount:function(){return this.moduleCount},make:function(){this.makeImpl(!1,this.getBestMaskPattern())},makeImpl:function(g,d){this.moduleCount=4*this.typeNumber+17;this.modules=Array(this.moduleCount);for(var f=0;f<this.moduleCount;f++){this.modules[f]=Array(this.moduleCount);for(var h=0;h<this.moduleCount;h++)this.modules[f][h]=null}this.setupPositionProbePattern(0,0);this.setupPositionProbePattern(this.moduleCount-7,0);this.setupPositionProbePattern(0,this.moduleCount-7);this.setupPositionAdjustPattern();this.setupTimingPattern();this.setupTypeInfo(g,d);7<=this.typeNumber&&this.setupTypeNumber(g);null==this.dataCache&&(this.dataCache=b.createData(this.typeNumber,this.errorCorrectLevel,this.dataList));this.mapData(this.dataCache,d)},setupPositionProbePattern:function(d,f){for(var e=-1;7>=e;e++)if(!(-1>=d+e||this.moduleCount<=d+e))for(var g=-1;7>=g;g++)-1>=f+g||this.moduleCount<=f+g||(this.modules[d+e][f+g]=0<=e&&6>=e&&(0==g||6==g)||0<=g&&6>=g&&(0==e||6==e)||2<=e&&4>=e&&2<=g&&4>=g?!0:!1)},getBestMaskPattern:function(){for(var e=0,d=0,f=0;8>f;f++){this.makeImpl(!0,f);var g=a.getLostPoint(this);if(0==f||e>g)e=g,d=f}return d},setupTimingPattern:function(){for(var d=8;d<this.moduleCount-8;d++)null==this.modules[d][6]&&(this.modules[d][6]=0==d%2);for(d=8;d<this.moduleCount-8;d++)null==this.modules[6][d]&&(this.modules[6][d]=0==d%2)},setupPositionAdjustPattern:function(){for(var d=a.getPatternPosition(this.typeNumber),e=0;e<d.length;e++)for(var f=0;f<d.length;f++){var g=d[e],h=d[f];if(null==this.modules[g][h])for(var k=-2;2>=k;k++)for(var l=-2;2>=l;l++)this.modules[g+k][h+l]=-2==k||2==k||-2==l||2==l||0==k&&0==l?!0:!1}},setupTypeInfo:function(g,h){for(var f=a.getBCHTypeInfo(8|h),e=0;15>e;e++){var d=!g&&1==(f>>e&1);6>e?this.modules[e][8]=d:8>e?this.modules[e+1][8]=d:this.modules[this.moduleCount-15+e][8]=d;8>e?this.modules[8][this.moduleCount-e-1]=d:9>e?this.modules[8][15-e-1+1]=d:this.modules[8][15-e-1]=d}this.modules[this.moduleCount-8][8]=!g},setupTypeNumber:function(g){for(var h=a.getBCHTypeNumber(this.typeNumber),f=0;18>f;f++){var e=!g&&1==(h>>f&1);this.modules[Math.floor(f/3)][f%3+this.moduleCount-8-3]=e;this.modules[f%3+this.moduleCount-8-3][Math.floor(f/3)]=e}},mapData:function(j,f){for(var k=-1,g=this.moduleCount-1,e=7,h=0,d=this.moduleCount-1;0<d;d-=2)for(6==d&&d--;;){for(var l=0;2>l;l++)if(null==this.modules[g][d-l]){var m=!1;h<j.length&&(m=1==(j[h]>>>e&1));a.getMask(f,g,d-l)&&(m=!m);this.modules[g][d-l]=m;e--;-1==e&&(h++,e=7)}if(g+=k,0>g||this.moduleCount<=g){g-=k;k=-k;break}}}};function c(d){this.mode=4;this.data=d}c.prototype={getLength:function(){return this.data.length},write:function(e){for(var d=0;d<this.data.length;d++)e.put(this.data.charCodeAt(d),8)}};var a={PATTERN_POSITION_TABLE:[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],G15:1335,G18:7973,G15_MASK:21522,getBCHTypeInfo:function(e){for(var d=e<<10;0<=a.getBCHDigit(d)-a.getBCHDigit(a.G15);)d^=a.G15<<a.getBCHDigit(d)-a.getBCHDigit(a.G15);return(e<<10|d)^a.G15_MASK},getBCHTypeNumber:function(e){for(var d=e<<12;0<=a.getBCHDigit(d)-a.getBCHDigit(a.G18);)d^=a.G18<<a.getBCHDigit(d)-a.getBCHDigit(a.G18);return e<<12|d},getBCHDigit:function(d){for(var e=0;0!=d;)e++,d>>>=1;return e},getPatternPosition:function(d){return a.PATTERN_POSITION_TABLE[d-1]},getMask:function(e,f,d){switch(e){case 0:return 0==(f+d)%2;case 1:return 0==f%2;case 2:return 0==d%3;case 3:return 0==(f+d)%3;case 4:return 0==(Math.floor(f/2)+Math.floor(d/3))%2;case 5:return 0==(f*d)%2+(f*d)%3;case 6:return 0==((f*d)%2+(f*d)%3)%2;case 7:return 0==((f*d)%3+(f+d)%2)%2;default:throw Error("bad mask:"+e);}},getErrorCorrectPolynomial:function(e){for(var f=new d([1],0),g=0;g<e;g++)f=f.multiply(new d([1,a.gexp(g)],0));return f},getLengthInBits:function(d,e){return 1<=e&&10>e?8:16},getLostPoint:function(e){for(var g=e.getModuleCount(),f=0,h=0;h<g;h++)for(var j=0;j<g;j++){for(var k=0,l=e.isDark(h,j),m=-1;1>=m;m++)if(!(0>h+m||g<=h+m))for(var n=-1;1>=n;n++)0>j+n||g<=j+n||0==m&&0==n||l==e.isDark(h+m,j+n)&&k++;5<k&&(f+=3+k-5)}return f}};function d(e,d){if(void 0==e.length)throw Error(e.length+"/"+d);for(var f=0;f<e.length&&0==e[f];)f++;this.num=Array(e.length-f+d);for(var g=0;g<e.length-f;g++)this.num[g]=e[g+f]}d.prototype={get:function(d){return this.num[d]},getLength:function(){return this.num.length},multiply:function(f){for(var e=Array(this.getLength()+f.getLength()-1),g=0;g<this.getLength();g++)for(var h=0;h<f.getLength();h++)e[g+h]^=a.gmult(this.get(g),f.get(h));return new d(e,0)},mod:function(f){if(0>this.getLength()-f.getLength())return this;for(var e=a.glog(this.get(0))-a.glog(f.get(0)),g=Array(this.getLength()),h=0;h<this.getLength();h++)g[h]=this.get(h);for(h=0;h<f.getLength();h++)g[h]^=a.gmult(f.get(h),a.gexp(e));return(new d(g,0)).mod(f)}};b.createData=function(m,e,h){for(var k=a.getRSBlocks(m,e),l=new f,g=0;g<h.length;g++){var n=h[g];l.put(n.mode,4);l.put(n.getLength(),a.getLengthInBits(n.mode,m));n.write(l)}for(var j=0,g=0;g<k.length;g++)j+=k[g].dataCount;for(4<=j*8-l.getLengthInBits()&&l.put(0,4);0!=l.getLengthInBits()%8;)l.putBit(!1);for(;;)if(l.getLengthInBits()>=8*j)break;else if(l.put(236,8),l.getLengthInBits()>=8*j)break;else l.put(17,8);return b.createBytes(l,k)};b.createBytes=function(h,d){for(var m=0,l=0,k=0,n=Array(d.length),e=Array(d.length),g=0;g<d.length;g++){var o=d[g].dataCount,j=d[g].totalCount-o;l=Math.max(l,o);k=Math.max(k,j);n[g]=Array(o);for(var f=0;f<n[g].length;f++)n[g][f]=255&h.buffer[f+m];m+=o;var p=a.getErrorCorrectPolynomial(j),q=new d(n[g],p.getLength()-1),r=q.mod(p);e[g]=Array(p.getLength()-1);for(f=0;f<e[g].length;f++){var s=f+r.getLength()-e[g].length;e[g][f]=0<=s?r.get(s):0}}for(t=0,f=0;f<d.length;f++)t+=d[f].totalCount;for(var u=Array(t),v=0,f=0;f<l;f++)for(g=0;g<d.length;g++)f<n[g].length&&(u[v++]=n[g][f]);for(f=0;f<k;f++)for(g=0;g<d.length;g++)f<e[g].length&&(u[v++]=e[g][f]);return u};function f(){this.buffer=[];this.length=0}f.prototype={get:function(d){return 1==(this.buffer[Math.floor(d/8)]>>>7-d%8&1)},put:function(d,f){for(var e=0;e<f;e++)this.putBit(1==(d>>>f-e-1&1))},getLengthInBits:function(){return this.length},putBit:function(d){var e=Math.floor(this.length/8);this.buffer.length<=e&&this.buffer.push(0);d&&(this.buffer[e]|=128>>>this.length%8);this.length++}};a.RS_BLOCK_TABLE=[[1,26,19],[1,44,34],[1,70,55],[1,100,80],[1,134,108],[2,86,68],[2,98,78],[2,121,97],[2,146,116],[2,86,68,2,87,69],[4,101,81],[2,116,92,2,117,93],[2,107,85,2,108,86],[4,115,91],[2,87,69,4,88,70],[4,121,97],[2,93,75,4,94,76],[4,107,85,2,108,86],[4,113,89,4,114,90],[4,107,85,6,108,86],[6,98,78,4,99,79],[8,103,83,4,104,84],[10,107,85,4,108,86],[8,111,87,8,112,88],[8,117,91,10,118,92],[10,121,93,8,122,94]];a.getRSBlocks=function(d,h){var g=a.RS_BLOCK_TABLE[d-1];if(!g)return[{totalCount:26,dataCount:19}];for(var e=[],f=0;f<g.length;f+=3)for(var j=g[f],k=g[f+1],l=g[f+2],m=0;m<j;m++)e.push({totalCount:k,dataCount:l});return e};a.EXP_TABLE=Array(256);a.LOG_TABLE=Array(256);for(var i=0;8>i;i++)a.EXP_TABLE[i]=1<<i;for(i=8;256>i;i++)a.EXP_TABLE[i]=a.EXP_TABLE[i-4]^a.EXP_TABLE[i-5]^a.EXP_TABLE[i-6]^a.EXP_TABLE[i-8];for(i=0;255>i;i++)a.LOG_TABLE[a.EXP_TABLE[i]]=i;a.gexp=function(d){for(;0>d;)d+=255;for(;256<=d;)d-=255;return a.EXP_TABLE[d]};a.glog=function(d){return a.LOG_TABLE[d]};a.gmult=function(d,e){return 0==d||0==e?0:a.gexp(a.glog(d)+a.glog(e))};return function(d,e){for(var f=1;26>=f;f++)try{var g=new b(f,e||0);g.addData(d);g.make();return g}catch(h){}return null}})();
 
-  function generateQrLocal(sourceId, targetId) {
-    var target = document.getElementById(targetId);
-    if (!target || target.getAttribute("data-done") === "1") return;
-    var text = document.getElementById(sourceId).innerText.trim();
-    
-    var qr = qrcode(text, 0);
-    if (!qr) {
-      target.innerHTML = '<span style="color:red;font-size:12px;">لینک برای QR بسیار طولانی است</span>';
-      return;
-    }
-    
-    var count = qr.getModuleCount();
-    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + count + ' ' + count + '" shape-rendering="crispEdges">';
-    for (var r = 0; r < count; r++) {
-      for (var c = 0; c < count; c++) {
-        if (qr.isDark(r, c)) {
-          svg += '<rect x="' + c + '" y="' + r + '" width="1" height="1" fill="#000000"/>';
-        }
-      }
-    }
-    svg += '</svg>';
-    target.innerHTML = svg;
-    target.setAttribute("data-done", "1");
+function makeQr(detailEl, srcId, targetId) {
+  if (!detailEl.open) return;
+  var target = document.getElementById(targetId);
+  if (!target || target.getAttribute("data-done") === "1") return;
+  var text = document.getElementById(srcId).innerText.trim();
+  var qr = QRCodeObj(text, 0);
+  if (!qr) {
+    target.innerHTML = '<span style="color:red;font-size:12px;">متن بسیار طولانی است</span>';
+    return;
   }
+  var count = qr.getModuleCount();
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + count + ' ' + count + '" shape-rendering="crispEdges">';
+  for (var r = 0; r < count; r++) {
+    for (var c = 0; c < count; c++) {
+      if (qr.isDark(r, c)) svg += '<rect x="' + c + '" y="' + r + '" width="1" height="1" fill="#000"/>';
+    }
+  }
+  svg += '</svg>';
+  target.innerHTML = svg;
+  target.setAttribute("data-done", "1");
+}
 </script>
 
 <script>
@@ -288,24 +284,15 @@ var qrcode=(function(){var a={};function b(e,d){this.typeNumber=e;this.errorCorr
 
   function formatExpire(ts) {
     var sec = parseInt(ts, 10);
-    if (!sec || isNaN(sec) || sec <= 0) {
-      return "نامحدود (بدون انقضا)";
-    }
+    if (!sec || isNaN(sec) || sec <= 0) return "نامحدود (بدون انقضا)";
     if (sec < 10000000000) sec = sec * 1000;
-    
     var expDate = new Date(sec);
     var now = new Date();
     var diffDays = Math.ceil((expDate - now) / (1000 * 60 * 60 * 24));
     var pDate = new Intl.DateTimeFormat('fa-IR', { year: 'numeric', month: 'short', day: 'numeric' }).format(expDate);
-    
-    if (diffDays > 0) {
-      return pDate + " (" + diffDays + " روز مانده)";
-    } else {
-      return pDate + " (منقضی شده)";
-    }
+    return diffDays > 0 ? pDate + " (" + diffDays + " روز مانده)" : pDate + " (منقضی شده)";
   }
 
-  // مقداردهی بخش آمار کاربر
   (function initStats() {
     var usedEl = document.getElementById("stat-used");
     var remEl = document.getElementById("stat-remaining");
@@ -320,26 +307,20 @@ var qrcode=(function(){var a={};function b(e,d){this.typeNumber=e;this.errorCorr
     if (limitNum <= 0) {
       remEl.textContent = "نامحدود ∞";
       bar.style.width = "100%";
-      bar.style.background = "var(--rb-accent)";
+      bar.style.background = "var(--zg-accent)";
     } else {
       var remNum = Math.max(0, limitNum - usedNum);
       remEl.textContent = formatBytes(remNum) + " (از " + formatBytes(limitNum) + ")";
-      
       var pct = Math.min(100, Math.round((usedNum / limitNum) * 100));
       bar.style.width = pct + "%";
-      if (pct > 85) {
-        bar.style.background = "var(--rb-danger)";
-      }
+      if (pct > 85) bar.style.background = "var(--zg-danger)";
     }
-
     expireEl.textContent = formatExpire(rawExpire);
   })();
 
-  // بررسی هوشمند تمام کانفیگ‌ها و درآوردن پروتکل‌ها (به ویژه وایرگارد و L2TP)
+  // بررسی پروتکل‌ها و لینک‌های دانلود WireGuard
   (function setupProtocols() {
     var items = document.querySelectorAll("[data-config-item]");
-    var foundL2TP = false;
-
     for (var i = 0; i < items.length; i++) {
       var box = items[i].querySelector(".linkbox");
       var badge = items[i].querySelector(".proto-badge");
@@ -351,32 +332,12 @@ var qrcode=(function(){var a={};function b(e,d){this.typeNumber=e;this.errorCorr
       var uri = box.innerText.trim();
       var low = uri.toLowerCase();
 
-      // ۱. کانفیگ فایل WireGuard (.conf)
       if (low.indexOf(".conf") !== -1 || (low.indexOf("/wg/") !== -1 && low.indexOf("http") === 0)) {
         badge.textContent = "WIREGUARD FILE";
         badge.className = "chip wg-file";
         lbl.textContent = "📥 فایل تنظیمات وایرگارد (.conf)";
         if (actLeft) actLeft.style.display = "none";
         actRight.innerHTML = '<a href="' + uri + '" download class="btn dl-btn">دانلود مستقیم فایل کانفیگ ⬇</a>';
-      }
-      // ۲. پروتکل L2TP یا IPsec (در صورتی که در اینباندها وجود داشته باشد)
-      else if (low.indexOf("l2tp://") === 0 || low.indexOf("ipsec://") === 0) {
-        badge.textContent = "L2TP / IPSEC";
-        badge.className = "chip l2tp-badge";
-        foundL2TP = true;
-        
-        try {
-          var cleanUri = uri.replace("l2tp://", "").replace("ipsec://", "");
-          var parts = cleanUri.split("@");
-          var hostPort = parts[parts.length - 1].split("?")[0].split(":")[0];
-          document.getElementById("l2tp-server").textContent = hostPort;
-          
-          if (uri.indexOf("psk=") !== -1) {
-            var pskVal = uri.split("psk=")[1].split("&")[0];
-            document.getElementById("l2tp-secret").textContent = decodeURIComponent(pskVal);
-            document.getElementById("l2tp-secret-row").style.display = "table-row";
-          }
-        } catch(e) {}
       }
       else if (low.indexOf("wireguard://") === 0) { badge.textContent = "WIREGUARD"; }
       else if (low.indexOf("vless://") === 0) { badge.textContent = "VLESS"; }
@@ -387,27 +348,50 @@ var qrcode=(function(){var a={};function b(e,d){this.typeNumber=e;this.errorCorr
       else if (low.indexOf("hysteria2://") === 0 || low.indexOf("hy2://") === 0) { badge.textContent = "HYSTERIA 2"; }
       else { badge.textContent = "CONFIG"; }
     }
-
-    // اگر اینباند L2TP پیدا شد باکس را باز کن، در غیر این صورت پنهان بماند تا اطلاعات سرِخود نمایش داده نشود
-    if (foundL2TP) {
-      document.getElementById("l2tp-container").style.display = "block";
-    }
   })();
 
-  function rbCopy(btn, text) {
+  // ارتباط با اندپوینت اختصاصی ربکا (/info) برای دریافت مشخصات L2TP
+  (function fetchRebeccaVpnInfo() {
+    var subUrl = window.location.href.split('?')[0].replace(/\/+$/, '');
+    var infoUrl = subUrl + "/info";
+
+    fetch(infoUrl)
+      .then(function(res) {
+        if (!res.ok) throw new Error();
+        return res.json();
+      })
+      .then(function(data) {
+        // اگر سرور اطلاعات VPN فرستاده باشد
+        if (data && (data.l2tp || data.ipsec || data.vpn_hosts)) {
+          var vpn = data.l2tp || data.ipsec || {};
+          document.getElementById("l2tp-server").textContent = vpn.server || window.location.hostname;
+          if (vpn.password) document.getElementById("l2tp-password").textContent = vpn.password;
+          if (vpn.psk || data.ipsec_psk) {
+            document.getElementById("l2tp-psk").textContent = vpn.psk || data.ipsec_psk;
+            document.getElementById("l2tp-psk-row").style.display = "table-row";
+          }
+          document.getElementById("l2tp-card").style.display = "block";
+        }
+      })
+      .catch(function() {
+        // در صورتی که اینباند L2TP فعال نباشد یا پاسخ ندهد، باکس کاملاً مخفی می‌ماند
+      });
+  })();
+
+  function zgCopy(btn, text) {
     var orig = btn.textContent;
     var done = function() {
       btn.textContent = btn.dataset.done || "کپی شد ✓";
       setTimeout(function() { btn.textContent = orig; }, 1400);
     };
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done).catch(function() { rbFallbackCopy(text, done); });
+      navigator.clipboard.writeText(text).then(done).catch(function() { zgFallbackCopy(text, done); });
     } else {
-      rbFallbackCopy(text, done);
+      zgFallbackCopy(text, done);
     }
   }
 
-  function rbFallbackCopy(text, done) {
+  function zgFallbackCopy(text, done) {
     var ta = document.createElement("textarea");
     ta.value = text;
     ta.style.position = "fixed";
@@ -419,15 +403,15 @@ var qrcode=(function(){var a={};function b(e,d){this.typeNumber=e;this.errorCorr
     done();
   }
 
-  function rbTheme() {
+  function zgTheme() {
     var cur = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
     document.documentElement.dataset.theme = cur;
-    try { localStorage.setItem("rb-theme", cur); } catch(e) {}
+    try { localStorage.setItem("zg-theme", cur); } catch(e) {}
   }
 
   (function initTheme() {
     try {
-      var s = localStorage.getItem("rb-theme");
+      var s = localStorage.getItem("zg-theme");
       var prefer = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       document.documentElement.dataset.theme = s || prefer;
     } catch(e) {
